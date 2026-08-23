@@ -4,52 +4,133 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="7LCmpGy7RMWePPEqMBOGfReXNsQQif1IxVBGjOpZvOU" />
-  <title>twliker - Developer Portal</title>
+  <title>TW-Overlay - Developer Portal & Official Support</title>
+  <meta name="description" content="TW-Overlay 공식 개발자 포털 및 앱 소개, Google API 연동 정책, 개인정보처리방침 안내">
+  <link rel="icon" type="image/png" href="https://twliker.github.io/tw-overlay/icon.png">
   <style>
     :root {
       --bg: #0b0f19;
-      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-bg: rgba(30, 41, 59, 0.75);
       --card-border: rgba(255, 255, 255, 0.1);
       --accent: #38bdf8;
+      --accent-purple: #818cf8;
       --text: #f8fafc;
       --text-muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: var(--bg);
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg) 70%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 20px;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 860px;
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
     }
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       backdrop-filter: blur(12px);
       border-radius: 20px;
-      padding: 40px;
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    h1 {
-      font-size: 26px;
-      font-weight: 800;
+    .card h2 {
+      font-size: 20px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card li {
+      color: #cbd5e1;
+      font-size: 14.5px;
       margin-bottom: 12px;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
-    p {
+    .card ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .feature-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 16px;
+      border-radius: 12px;
+    }
+    .feature-item h3 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .feature-item p {
+      font-size: 13px;
       color: var(--text-muted);
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 28px;
+      margin: 0;
+    }
+    .cloud-notice {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+    .cloud-notice h3 {
+      color: #bae6fd;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .cloud-notice p {
+      color: #e0f2fe;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
     }
     .btn {
       display: inline-flex;
@@ -59,31 +140,110 @@
       background: linear-gradient(135deg, #0284c7, #2563eb);
       color: #fff;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 12px;
+      padding: 12px 20px;
+      border-radius: 10px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--card-border);
+      color: #fff;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
     }
     footer {
-      margin-top: 30px;
-      font-size: 12px;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
       color: #64748b;
+      border-top: 1px solid var(--card-border);
+      padding-top: 20px;
+      width: 100%;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>twliker Developer Portal</h1>
-    <p>환영합니다! 테일즈위버 올인원 스마트 오버레이 도구(TW-Overlay) 공식 소개 페이지 및 개인정보처리방침을 확인하실 수 있습니다.</p>
-    <a href="https://twliker.github.io/tw-overlay/" class="btn">✨ TW-Overlay 공식 홈페이지 바로가기</a>
+  <div class="container">
+    <header class="header">
+      <div class="logo-badge">
+        <img src="https://twliker.github.io/tw-overlay/icon.png" alt="TW-Overlay Logo" class="logo-img">
+        <h1 style="display: inline-block; margin: 0;">TW-Overlay</h1>
+      </div>
+      <p class="subtitle">Official Developer Portal & Application Information</p>
+    </header>
+
+    <!-- 앱 소개 섹션 -->
+    <section class="card">
+      <h2>📌 애플리케이션 소개 (About Application)</h2>
+      <p><strong>TW-Overlay</strong>는 PC 데스크톱 환경에서 실행되는 올인원 게임 편의 및 숙제 체크리스트 오버레이 도구입니다. 사용자에게 쾌적한 게임 환경과 자동화된 정보 요약을 제공합니다.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>📋 스마트 숙제 체크리스트</h3>
+          <p>일일/주간 주기에 맞춘 숙제 진행 상황 및 캐릭터별 완료 관리</p>
+        </div>
+        <div class="feature-item">
+          <h3>💬 실시간 알림 HUD</h3>
+          <p>득템, 주요 키워드 및 채팅 로그 실시간 오버레이 알림</p>
+        </div>
+        <div class="feature-item">
+          <h3>☁️ Google Drive 클라우드 동기화</h3>
+          <p>다중 PC 환경에서 숙제 및 캐릭터 설정을 안전하게 자동 백업</p>
+        </div>
+        <div class="feature-item">
+          <h3>📊 활동 통계 & 계산기</h3>
+          <p>경험치, 대미지 계수 및 강화 확률 시뮬레이션 지원</p>
+        </div>
+      </div>
+      <div class="btn-group">
+        <a href="https://twliker.github.io/tw-overlay/" class="btn">🌐 TW-Overlay 공식 홈페이지 방문</a>
+        <a href="https://twliker.github.io/tw-overlay/guide/" class="btn btn-secondary">📖 기능 사용 설명서</a>
+      </div>
+    </section>
+
+    <!-- Google OAuth & 데이터 사용 정책 섹션 (구글 심사 필수 요건) -->
+    <section class="card">
+      <h2>🔒 Google API 및 사용자 데이터 사용 정책 (Google API User Data Policy)</h2>
+      <p>TW-Overlay는 사용자가 명시적으로 구글 계정을 연동할 때 <strong>Google Drive API (드라이브 앱 데이터 스코프)</strong>를 사용합니다.</p>
+      
+      <div class="cloud-notice">
+        <h3>☁️ Google 데이터 사용 목적 및 제한적 사용 (Limited Use)</h3>
+        <ul>
+          <li><strong>요청 권한</strong>: <code>https://www.googleapis.com/auth/drive.appdata</code> (Application Data Folder)</li>
+          <li><strong>사용 목적</strong>: 사용자의 여러 PC 간에 숙제 완료 상태와 개인 설정 파일(JSON)을 백업 및 동기화하기 위한 용도로만 사용됩니다.</li>
+          <li><strong>데이터 격리 보장</strong>: 오직 TW-Overlay가 생성한 앱 전용 숨김 폴더에만 접근하며, 사용자의 Google Drive 내 일반 문서, 사진 등 개인 파일에는 일체 접근하지 않습니다.</li>
+          <li><strong>외부 서버 미전송</strong>: 개발자나 중앙 서버로 사용자의 구글 계정 정보나 데이터를 전송하거나 저장하지 않습니다.</li>
+          <li><strong>타 용도 금지</strong>: 사용자 데이터를 광고 타겟팅, 제3자 제공, AI 모델 학습 등에 절대 활용하지 않습니다.</li>
+        </ul>
+      </div>
+      
+      <div class="btn-group">
+        <a href="https://twliker.github.io/tw-overlay/privacy/" class="btn btn-secondary">📜 공식 개인정보처리방침(Privacy Policy) 전문 보기</a>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+      <div>
+        &copy; 2026 <strong>TW-Overlay</strong>. Developed by <a href="https://github.com/twliker" target="_blank">twliker</a>.<br>
+        <span style="font-size: 11.5px; color: #475569;">본 도구는 오픈소스 소프트웨어이며 투명한 개인정보 보호 정책을 준수합니다.</span>
+      </div>
+      <div style="margin-top: 12px; display: flex; justify-content: center; gap: 16px;">
+        <a href="https://twliker.github.io/tw-overlay/">공식 홈페이지</a>
+        <a href="https://twliker.github.io/tw-overlay/privacy/">개인정보처리방침</a>
+        <a href="https://github.com/twliker/tw-overlay" target="_blank">GitHub 저장소</a>
+      </div>
+    </footer>
   </div>
-  <footer>
-    &copy; 2026 twliker. All rights reserved.
-  </footer>
 </body>
 </html>
